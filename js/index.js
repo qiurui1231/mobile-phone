@@ -121,7 +121,7 @@ var  swichNavitemsActive = function (idx) {
 }
 // 侧栏滚动
 window.onscroll =function () {
-	var top = document.body.scrollTop;
+	var top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 	swichNavitemsActive(0)
 	if (top > 80) {
 		addCls(getEle('.header'),'header_status_back')
@@ -162,8 +162,14 @@ var setNavjump = function (i,lib) {
 	item.onclick =function () {
 		console.log(i);
 		// alert(this.innerHTML);
-	 document.body.scrollTop = i*800;
+	 if(document.body.scrollTop){
+		document.body.scrollTop = i*800 ;
+	 }else{
+		document.documentElement.scrollTop = i*800 ;
 
+	 }
+
+	
 	}
 }
 
